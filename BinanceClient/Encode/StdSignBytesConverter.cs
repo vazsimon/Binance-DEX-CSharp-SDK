@@ -23,11 +23,11 @@ namespace BinanceClient.Crypto
         private Wallet _wallet;
 
   
-        public StdSignBytesConverter(object msg, Wallet wallet)
+        public StdSignBytesConverter(object msg, Wallet wallet, string memo="")
         {
             msgs = new object[] { msg };
             data = null;
-            memo = string.Empty;
+            this.memo = memo;
             source = "0";
 
             account_number = wallet.AccountNumber.ToString();

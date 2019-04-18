@@ -87,24 +87,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BroadcastTransactions\CancelOrder.cs" />
-    <Compile Include="BroadcastTransactions\NewOrder.cs" />
-    <Compile Include="BroadcastTransactions\Send.cs" />
-    <Compile Include="BroadcastTransactions\TokenFreeze.cs" />
-    <Compile Include="BroadcastTransactions\TokenUnfreeze.cs" />
-    <Compile Include="BroadcastTransactions\Vote.cs" />
+    <Compile Include="BinanceClient.cs" />
+    <Compile Include="BroadcastTransactions\BroadcastMessageBuilder.cs" />
+    <Compile Include="BroadcastTransactions\Models\BlockchainNetworkMismatchException.cs" />
+    <Compile Include="BroadcastTransactions\Models\Enums.cs" />
+    <Compile Include="BroadcastTransactions\MultipleSendDestination.cs" />
     <Compile Include="Crypto\Bech32Engine.cs" />
     <Compile Include="Crypto\BinanceEnvironment.cs" />
     <Compile Include="Crypto\Helpers.cs" />
+    <Compile Include="Crypto\Models\CreateRandomAccountResponse.cs" />
     <Compile Include="Crypto\Wallet.cs" />
     <Compile Include="Encode\AminoBuilder.cs" />
     <Compile Include="Encode\ByteStringConverter.cs" />
     <Compile Include="Encode\NumericConverter.cs" />
     <Compile Include="Encode\StdSignBytesConverter.cs" />
-    <Compile Include="Https\Get\GetRequest.cs" />
-    <Compile Include="Https\Get\HTTPSClient.cs" />
-    <Compile Include="Https\Get\Models\AccountSequenceResponse.cs" />
-    <Compile Include="Https\Post\Broadcast.cs" />
+    <Compile Include="Http\BinanceHTTPApiRequestException.cs" />
+    <Compile Include="Http\Get\GetRequest.cs" />
+    <Compile Include="Http\HTTPClient.cs" />
+    <Compile Include="Http\Get\Models\AccountResponse.cs" />
+    <Compile Include="Http\Get\Models\AccountSequenceResponse.cs" />
+    <Compile Include="Http\Post\Broadcast.cs" />
+    <Compile Include="Http\Post\Models\BroadcastResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proto\Dex.cs" />
   </ItemGroup>

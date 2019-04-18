@@ -1,5 +1,8 @@
 ﻿using Bech32;
+using BinanceClient.Crypto.Models;
 using BinanceClient.Encode;
+using BinanceClient.Http;
+using BinanceClient.Http.Get;
 using NBitcoin;
 using NBitcoin.Crypto;
 using System;
@@ -42,19 +45,57 @@ namespace BinanceClient.Crypto
         public BinanceEnvironment Env { get { return _env; } }
 
         public string Hrp { get {return _env.Hrp; } }
-
-        public bool VerifySequenceBeforeSend { get; set; }
+        /// <summary>
+        /// Signal to the client that it should retrieve the newest sequencenumber from the blockchain before constructing a message. Useful when we don't wait
+        /// for the confirmation of the broadcast requests or when the same key is being used from different apps. Default is false, the sequence number follows
+        /// the successfully submitted broadcast transactions by default
+        /// </summary>
+        public bool RequiresVerifySequenceBeforeSend { get; set; }
 
         private void Init()
         {
-            VerifySequenceBeforeSend = true;
-            _accountNumber = 667614;
-            _sequence = 3;
-            _chainId = _env.ChainId;            
+            HTTPClient httpClient = new HTTPClient(Env.EnvironmentType);
+            var accountInfo = httpClient.GetAccount(Address);            
+            _accountNumber = accountInfo.account_number;
+            _sequence = accountInfo.sequence;
+
+            _chainId = _env.ChainId;
+
+            RequiresVerifySequenceBeforeSend = false;
+        }
+
+   
+        public void RefreshSequence()
+        {
+            HTTPClient httpClient = new HTTPClient(Env.EnvironmentType);
+            _sequence = httpClient.GetAccountSequence(Address);
+        }
+
+        public void IncrementSequence()
+        {
+            _sequence++;
+        }
+
+        public static CreateRandomAccountResponse CreateRandomAccount(EnvironmentType network)
+        {
+            var env = BinanceEnvironment.GetEnvironment(network);
+            var response = new CreateRandomAccountResponse();
+            response.Network = network;
+            Mnemonic mnemonic = new Mnemonic(Wordlist.English, WordCount.TwentyFour);
+            response.Mnemonic = mnemonic.ToString();
+            var seed = mnemonic.DeriveSeed();
+            var pk = new ExtKey(seed);
+            var kp = KeyPath.Parse(keyPath);
+            var key = pk.Derive(kp);
+            var privKey = key.PrivateKey;
+            response.PrivateKey = BitConverter.ToString(privKey.ToBytes()).Replace("-", string.Empty);
+            response.Address = Bech32Engine.Encode(env.Hrp, privKey.PubKey.Hash.ToBytes());
+
+            return response;
         }
 
 
-        public static Wallet RestoreWalletFromMnemonic(string mnemonicStr, Environment env)
+        public static Wallet RestoreWalletFromMnemonic(string mnemonicStr, EnvironmentType env)
         {
             
             Mnemonic mnemonic = new Mnemonic(mnemonicStr);
@@ -82,7 +123,7 @@ namespace BinanceClient.Crypto
             return w;
         }
 
-        public Wallet(string privateKey, Environment env)
+        public Wallet(string privateKey, EnvironmentType env)
         {
             _env = BinanceEnvironment.GetEnvironment(env);
             _privateKey = new Key(Helpers.StringToByteArrayFastest(privateKey));
@@ -113,9 +154,5 @@ namespace BinanceClient.Crypto
             return result;
         }
 
-        public string SignMessage(byte[] message)
-        {
-            return _privateKey.SignMessage(message);
-        }
     }
 }

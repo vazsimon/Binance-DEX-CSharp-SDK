@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BinanceClient.BroadcastTransactions
 {
-    class Send
+    public class MultipleSendDestination
     {
+        public string Address { get; set; }
+        public decimal Amount { get; set; }
+        public string coin { get; set; }
     }
 }

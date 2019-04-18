@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinanceClient.BroadcastTransactions
+namespace BinanceClient.Http.Get.Models
 {
-    class CancelOrder
+    public class AccountSequenceResponse
     {
+        public long sequence { get; set; }
     }
 }
