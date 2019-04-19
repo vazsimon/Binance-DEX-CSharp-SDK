@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BinanceClient\BinanceClient.csproj">
-      <Project>{E3BB2C7E-DDA7-43D6-B0C2-53C1ACBFC861}</Project>
+      <Project>{e3bb2c7e-dda7-43d6-b0c2-53c1acbfc861}</Project>
       <Name>BinanceClient</Name>
     </ProjectReference>
   </ItemGroup>

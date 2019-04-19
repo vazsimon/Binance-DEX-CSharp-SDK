@@ -11,6 +11,6 @@ namespace BinanceClient.Crypto.Models
         public string Mnemonic { get; set; }
         public string PrivateKey { get; set; }
         public string Address { get; set; }
-        public EnvironmentType Network { get; set; }
+        public Network Network { get; set; }
     }
 }

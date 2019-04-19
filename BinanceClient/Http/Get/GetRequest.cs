@@ -11,10 +11,13 @@ namespace BinanceClient.Http.Get
     static class GetRequest
     {
         static Dictionary<string, List<DateTime>> LastCallTimes;
+        private static object GetRequestLockObject;
+
 
         static GetRequest()
         {
             LastCallTimes = new Dictionary<string, List<DateTime>>();
+            GetRequestLockObject = new object();
         }
 
         internal static string DownloadResult(string url, string urlPattern="", int rateLimit = 0)
@@ -28,13 +31,17 @@ namespace BinanceClient.Http.Get
                     bool clearedToGo = false;
                     while (!clearedToGo)
                     {
-                        callList.RemoveAll(X => X < DateTime.Now.AddSeconds(-1));
-                        if (callList.Count < rateLimit)
+                        lock (GetRequestLockObject)
                         {
-                            clearedToGo = true;
-                            callList.Add(DateTime.Now);
+                            callList.RemoveAll(X => X < DateTime.Now.AddSeconds(-1));
+                            if (callList.Count < rateLimit)
+                            {
+                                clearedToGo = true;
+                                callList.Add(DateTime.Now);
+                            }
                         }
-                        else
+                        
+                        if (!clearedToGo)
                         {
                             Thread.Sleep(50);
                         }

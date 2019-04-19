@@ -4,5 +4,7 @@
 
 /BinanceClient/bin/Debug
 /BinanceClient/obj/Debug
+BinanceClientTests/bin/Debug
+BinanceClientTests/obj/Debug
 /.vs/BinanceClient
 /packages

@@ -45,13 +45,7 @@ namespace BinanceClient.Crypto
         public BinanceEnvironment Env { get { return _env; } }
 
         public string Hrp { get {return _env.Hrp; } }
-        /// <summary>
-        /// Signal to the client that it should retrieve the newest sequencenumber from the blockchain before constructing a message. Useful when we don't wait
-        /// for the confirmation of the broadcast requests or when the same key is being used from different apps. Default is false, the sequence number follows
-        /// the successfully submitted broadcast transactions by default
-        /// </summary>
-        public bool RequiresVerifySequenceBeforeSend { get; set; }
-
+   
         private void Init()
         {
             HTTPClient httpClient = new HTTPClient(Env.EnvironmentType);
@@ -60,8 +54,6 @@ namespace BinanceClient.Crypto
             _sequence = accountInfo.sequence;
 
             _chainId = _env.ChainId;
-
-            RequiresVerifySequenceBeforeSend = false;
         }
 
    
@@ -76,7 +68,12 @@ namespace BinanceClient.Crypto
             _sequence++;
         }
 
-        public static CreateRandomAccountResponse CreateRandomAccount(EnvironmentType network)
+        public void SetSequence(long sequence)
+        {
+            _sequence = sequence;
+        }
+
+        public static CreateRandomAccountResponse CreateRandomAccount(Network network)
         {
             var env = BinanceEnvironment.GetEnvironment(network);
             var response = new CreateRandomAccountResponse();
@@ -95,7 +92,7 @@ namespace BinanceClient.Crypto
         }
 
 
-        public static Wallet RestoreWalletFromMnemonic(string mnemonicStr, EnvironmentType env)
+        public static Wallet RestoreWalletFromMnemonic(string mnemonicStr, Network env)
         {
             
             Mnemonic mnemonic = new Mnemonic(mnemonicStr);
@@ -123,7 +120,7 @@ namespace BinanceClient.Crypto
             return w;
         }
 
-        public Wallet(string privateKey, EnvironmentType env)
+        public Wallet(string privateKey, Network env)
         {
             _env = BinanceEnvironment.GetEnvironment(env);
             _privateKey = new Key(Helpers.StringToByteArrayFastest(privateKey));

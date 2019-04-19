@@ -87,11 +87,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinanceClient.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="BroadcastTransactions\BroadcastMessageBuilder.cs" />
     <Compile Include="BroadcastTransactions\Models\BlockchainNetworkMismatchException.cs" />
     <Compile Include="BroadcastTransactions\Models\Enums.cs" />
-    <Compile Include="BroadcastTransactions\MultipleSendDestination.cs" />
+    <Compile Include="BroadcastTransactions\Models\MultipleSendDestination.cs" />
     <Compile Include="Crypto\Bech32Engine.cs" />
     <Compile Include="Crypto\BinanceEnvironment.cs" />
     <Compile Include="Crypto\Helpers.cs" />
@@ -99,15 +99,23 @@
     <Compile Include="Crypto\Wallet.cs" />
     <Compile Include="Encode\AminoBuilder.cs" />
     <Compile Include="Encode\ByteStringConverter.cs" />
-    <Compile Include="Encode\NumericConverter.cs" />
     <Compile Include="Encode\StdSignBytesConverter.cs" />
+    <Compile Include="Examples\Example.cs" />
     <Compile Include="Http\BinanceHTTPApiRequestException.cs" />
     <Compile Include="Http\Get\GetRequest.cs" />
+    <Compile Include="Http\Get\Models\DepthModel.cs" />
+    <Compile Include="Http\Get\Models\Enums.cs" />
+    <Compile Include="Http\Get\Models\FeesResponse.cs" />
+    <Compile Include="Http\Get\Models\MarketsResponse.cs" />
+    <Compile Include="Http\Get\Models\TimeResponse.cs" />
+    <Compile Include="Http\Get\Models\PeerResponse.cs" />
+    <Compile Include="Http\Get\Models\TokensResponse.cs" />
     <Compile Include="Http\HTTPClient.cs" />
     <Compile Include="Http\Get\Models\AccountResponse.cs" />
     <Compile Include="Http\Get\Models\AccountSequenceResponse.cs" />
     <Compile Include="Http\Post\Broadcast.cs" />
     <Compile Include="Http\Post\Models\BroadcastResponse.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proto\Dex.cs" />
   </ItemGroup>
