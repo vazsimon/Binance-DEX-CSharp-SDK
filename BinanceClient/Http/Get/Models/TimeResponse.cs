@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,9 @@ namespace BinanceClient.Http.Get.Models
 {
     public class TimeResponse
     {
-        public DateTime ap_time { get; set; }
-        public DateTime block_time { get; set; }
+        [JsonProperty(PropertyName = "ap_time")]
+        public DateTime ApTtime { get; set; }
+        [JsonProperty(PropertyName = "block_time")]
+        public DateTime BlockTime { get; set; }
     }
 }

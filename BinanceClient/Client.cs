@@ -18,7 +18,7 @@ namespace BinanceClient
         public Wallet Wallet { get { return _wallet; } }
 
         private HTTPClient _httpClient;
-        public HTTPClient HTTPClient { get { return _httpClient; } }
+        public HTTPClient HTTP { get { return _httpClient; } }
 
         public SequenceEnsureMode sequenceEnsureMode { get; set; }
 
@@ -68,7 +68,7 @@ namespace BinanceClient
                     Wallet.RefreshSequence();
                 }
                 var msg = BroadcastMessageBuilder.BuildTokenFreezeMessage(coin, amount, Wallet);
-                var result = HTTPClient.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
+                var result = HTTP.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
                 if (result.ok)
                 {
                     _wallet.IncrementSequence();
@@ -88,7 +88,7 @@ namespace BinanceClient
                     Wallet.RefreshSequence();
                 }
                 var msg = BroadcastMessageBuilder.BuildTokenUnfreezeMessage(coin, amount, Wallet);
-                var result = HTTPClient.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
+                var result = HTTP.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
                 if (result.ok)
                 {
                     _wallet.IncrementSequence();
@@ -118,7 +118,7 @@ namespace BinanceClient
                     Wallet.RefreshSequence();
                 }
                 var msg = BroadcastMessageBuilder.BuildVoteMessage(proposal_id, option, Wallet);
-                var result = HTTPClient.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
+                var result = HTTP.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
                 if (result.ok)
                 {
                     _wallet.IncrementSequence();
@@ -147,7 +147,7 @@ namespace BinanceClient
                     Wallet.RefreshSequence();
                 }
                 var msg = BroadcastMessageBuilder.BuildCancelOrderMessage(symbol, refId, Wallet);
-                var result = HTTPClient.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
+                var result = HTTP.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
                 if (result.ok)
                 {
                     _wallet.IncrementSequence();
@@ -176,7 +176,7 @@ namespace BinanceClient
                     Wallet.RefreshSequence();
                 }
                 var msg = BroadcastMessageBuilder.BuildNewOrderMessage(symbol, orderType, side, price, qty, tif, Wallet);
-                var result = HTTPClient.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
+                var result = HTTP.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
                 if (result.ok)
                 {
                     _wallet.IncrementSequence();
@@ -206,7 +206,7 @@ namespace BinanceClient
                     Wallet.RefreshSequence();
                 }
                 var msg = BroadcastMessageBuilder.BuildSendOneMessage(toAddress, coin, amount, Wallet, memo);
-                var result = HTTPClient.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
+                var result = HTTP.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
                 if (result.ok)
                 {
                     _wallet.IncrementSequence();
@@ -242,7 +242,7 @@ namespace BinanceClient
                     Wallet.RefreshSequence();
                 }
                 var msg = BroadcastMessageBuilder.BuildSendMultipleMessage(destinations, Wallet, memo);
-                var result = HTTPClient.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
+                var result = HTTP.BroadcastToBlockchain(msg, WaitForTransactionConfirmationOnBroadcast);
                 if (result.ok)
                 {
                     _wallet.IncrementSequence();

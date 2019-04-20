@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,22 +12,27 @@ namespace BinanceClient.Http.Get.Models
         /// <summary>
         /// symbol of base asset
         /// </summary>
-        public string base_asset_symbol { get; set; }
+        [JsonProperty(PropertyName = "base_asset_symbol")]
+        public string Base_asset_symbol { get; set; }
         /// <summary>
         /// symbol of quote asset
         /// </summary>
-        public string quote_asset_symbol { get; set; }
+        [JsonProperty(PropertyName = "quote_asset_symbol")]
+        public string Quote_asset_symbol { get; set; }
         /// <summary>
         /// In decimal form, e.g. 1.00000000
         /// </summary>
-        public decimal list_price { get; set; }
+        [JsonProperty(PropertyName = "list_price")]
+        public decimal List_price { get; set; }
         /// <summary>
         /// Minimium price change in decimal form, e.g. 1.00000000
         /// </summary>
-        public string tick_size { get; set; }
+        [JsonProperty(PropertyName = "tick_size")]
+        public string Tick_size { get; set; }
         /// <summary>
         /// Minimium trading quantity in decimal form, e.g. 1.00000000
         /// </summary>
-        public decimal lot_size { get; set; }
+        [JsonProperty(PropertyName = "lot_size")]
+        public decimal Lot_size { get; set; }
     }
 }

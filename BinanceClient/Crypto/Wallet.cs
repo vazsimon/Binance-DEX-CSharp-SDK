@@ -50,8 +50,8 @@ namespace BinanceClient.Crypto
         {
             HTTPClient httpClient = new HTTPClient(Env.EnvironmentType);
             var accountInfo = httpClient.GetAccount(Address);            
-            _accountNumber = accountInfo.account_number;
-            _sequence = accountInfo.sequence;
+            _accountNumber = accountInfo.AccountNumber;
+            _sequence = accountInfo.Sequence;
 
             _chainId = _env.ChainId;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace BinanceClient.Http.Get.Models
 {
     public class AccountSequenceResponse
     {
-        public long sequence { get; set; }
+        [JsonProperty(PropertyName = "sequence")]
+        public long Sequence { get; set; }
     }
 }

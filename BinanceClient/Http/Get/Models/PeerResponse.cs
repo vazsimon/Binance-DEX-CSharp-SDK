@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,42 +12,52 @@ namespace BinanceClient.Http.Get.Models
         /// <summary>
         /// Authenticated identifier
         /// </summary>
-        public string id { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
         /// <summary>
         /// Original listen address before PeersService changed it
         /// </summary>
-        public string original_listen_addr { get; set; }
+        [JsonProperty(PropertyName = "original_listen_addr")]
+        public string OriginalListenAddr { get; set; }
         /// <summary>
         /// Listen address
         /// </summary>
-        public string listen_addr { get; set; }
+        [JsonProperty(PropertyName = "listen_addr")]
+        public string listenAddr { get; set; }
         /// <summary>
         /// Access address (HTTP)
         /// </summary>
-        public string access_addr { get; set; }
+        [JsonProperty(PropertyName = "access_addr")]
+        public string AccessAddr { get; set; }
         /// <summary>
         /// Stream address (WS)
         /// </summary>
-        public string stream_addr { get; set; }
+        [JsonProperty(PropertyName = "stream_addr")]
+        public string StreamAddr { get; set; }
         /// <summary>
         /// Chain ID
         /// </summary>
-        public string network { get; set; }
+        [JsonProperty(PropertyName = "network")]
+        public string Network { get; set; }
         /// <summary>
         /// Version
         /// </summary>
-        public string version { get; set; }
+        [JsonProperty(PropertyName = "version")]
+        public string Version { get; set; }
         /// <summary>
         /// Moniker (Name)
         /// </summary>
-        public string moniker { get; set; }
+        [JsonProperty(PropertyName = "moniker")]
+        public string Moniker { get; set; }
         /// <summary>
         /// Array of capability tags: node, qs, ap, ws
         /// </summary>
-        public List<string> capabilities { get; set; }
+        [JsonProperty(PropertyName = "capabilities")]
+        public List<string> Capabilities { get; set; }
         /// <summary>
         /// Is an accelerated path to a validator node	
         /// </summary>
-        public bool accelerated { get; set; }
+        [JsonProperty(PropertyName = "accelerated")]
+        public bool Accelerated { get; set; }
     }    
 }

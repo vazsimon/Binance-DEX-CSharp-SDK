@@ -20,7 +20,7 @@ namespace BinanceClient.Http.Get
             GetRequestLockObject = new object();
         }
 
-        internal static string DownloadResult(string url, string urlPattern="", int rateLimit = 0)
+        internal static string DownloadResult(string url, string urlPattern, int rateCheckIntervalSeconds, int rateLimit)
         {
             if (rateLimit > 0)
             {
@@ -33,7 +33,7 @@ namespace BinanceClient.Http.Get
                     {
                         lock (GetRequestLockObject)
                         {
-                            callList.RemoveAll(X => X < DateTime.Now.AddSeconds(-1));
+                            callList.RemoveAll(X => X < DateTime.Now.AddSeconds(-1  * rateCheckIntervalSeconds));
                             if (callList.Count < rateLimit)
                             {
                                 clearedToGo = true;
