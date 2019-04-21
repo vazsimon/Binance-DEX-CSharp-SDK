@@ -9,7 +9,7 @@ namespace BinanceClient.Crypto
     public class BinanceEnvironment
     {
         private Network _environmentType;
-        public Network EnvironmentType { get; set; }
+        public Network Network { get; set; }
         private string _hrp;
         public string Hrp { get { return _hrp; } }
         private string _chainId;
@@ -23,13 +23,13 @@ namespace BinanceClient.Crypto
         public static BinanceEnvironment GetEnvironment(Network env)
         {
             BinanceEnvironment be = new BinanceEnvironment();
-            be.EnvironmentType = env;
+            be.Network = env;
             if (env == Network.Test)
             {
                 be._hrp = "tbnb";
                 be._chainId = "Binance-Chain-Nile";
                 be._httpsApiAddress = "https://testnet-dex.binance.org/api/v1";
-                be._wssApiAddress = "wss://testnet-dex.binance.org/api/";
+                be._wssApiAddress = "wss://testnet-dex.binance.org/api/ws";
             }
             else if (env == Network.Production)
             {

@@ -20,6 +20,9 @@ namespace BinanceClient
         private HTTPClient _httpClient;
         public HTTPClient HTTP { get { return _httpClient; } }
 
+        private Websockets.Websockets _ws;
+        public Websockets.Websockets Websockets { get { return _ws; } }
+
         public SequenceEnsureMode sequenceEnsureMode { get; set; }
 
 
@@ -34,19 +37,24 @@ namespace BinanceClient
 
         public Client(string privateKey, Network network,SequenceEnsureMode sequenceEnsureMode = SequenceEnsureMode.VerifyBeforeSendAndWaitForConfirmation)
         {
-            _wallet = new Wallet(privateKey, network);
-            _httpClient = new HTTPClient(network);
-            this.sequenceEnsureMode = sequenceEnsureMode;
-            BroadcastLockObject = new object();
+            var wallet = new Wallet(privateKey, network);
+            Init(wallet, sequenceEnsureMode);            
         }
 
         public Client(Wallet wallet, SequenceEnsureMode sequenceEnsureMode = SequenceEnsureMode.VerifyBeforeSendAndWaitForConfirmation)
         {
-            _wallet = wallet;
-            _httpClient = new HTTPClient(wallet.Env.EnvironmentType);
-            this.sequenceEnsureMode = sequenceEnsureMode;
-            BroadcastLockObject = new object();
+            Init(wallet, sequenceEnsureMode);
         }
+
+        public void Init(Wallet w, SequenceEnsureMode seqEnsureMode)
+        {
+            _wallet = w;
+            _httpClient = new HTTPClient(w.Env.Network);
+            this.sequenceEnsureMode = seqEnsureMode;
+            BroadcastLockObject = new object();
+            _ws = new Websockets.Websockets(string.Format("{0}/{1}",w.Env.WssApiAddress, _wallet.Address));
+        }
+
 
         public async Task<BroadcastResponse> FreezeTokenAsync(string coin, decimal amount)
         {

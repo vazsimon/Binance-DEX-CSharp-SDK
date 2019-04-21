@@ -48,7 +48,7 @@ namespace BinanceClient.Crypto
    
         private void Init()
         {
-            HTTPClient httpClient = new HTTPClient(Env.EnvironmentType);
+            HTTPClient httpClient = new HTTPClient(Env.Network);
             var accountInfo = httpClient.GetAccount(Address);            
             _accountNumber = accountInfo.AccountNumber;
             _sequence = accountInfo.Sequence;
@@ -59,7 +59,7 @@ namespace BinanceClient.Crypto
    
         public void RefreshSequence()
         {
-            HTTPClient httpClient = new HTTPClient(Env.EnvironmentType);
+            HTTPClient httpClient = new HTTPClient(Env.Network);
             _sequence = httpClient.GetAccountSequence(Address);
         }
 
