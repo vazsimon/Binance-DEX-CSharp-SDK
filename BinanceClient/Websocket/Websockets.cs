@@ -16,6 +16,12 @@ namespace BinanceClient.Websockets
         private WebSocket _ws;
         public bool Connected { get { return _ws.IsAlive; } }
         public BlockHeight BlockHeight { get; set; }
+        public AllMiniTicker AllMiniTicker { get; set; }
+        public IndividualMiniTicker IndividualMiniTicker { get; set; }
+        public AllTicker AllTicker { get; set; }
+        public IndividualTicker IndividualTicker { get; set; }
+        public Klines Klines { get; set; }
+        public BookDepth BookDepth { get; set; }
 
 
         public Websockets(string url)
@@ -28,6 +34,12 @@ namespace BinanceClient.Websockets
             _ws.OnError += _ws_OnError;
 
             BlockHeight = new BlockHeight(this);
+            AllMiniTicker = new AllMiniTicker(this);
+            IndividualMiniTicker = new IndividualMiniTicker(this);
+            AllTicker = new AllTicker(this);
+            IndividualTicker = new IndividualTicker(this);
+            Klines = new Klines(this);
+            BookDepth = new BookDepth(this);
         }
 
         public void Send(dynamic msg)
@@ -48,9 +60,34 @@ namespace BinanceClient.Websockets
 
         private void _ws_OnMessage(object sender, MessageEventArgs e)
         {
-            if (e.Data.StartsWith("{\"stream\":\"blockheight\""))
+            //Pre-parsing message. Doesn't fully deserialize now to dynamic to improve performance
+            if (e.Data.StartsWith("{\"stream\":\"marketDepth\""))
+            {
+                BookDepth.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"blockheight\""))
             {
                 BlockHeight.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"allMiniTickers\""))
+            {
+                AllMiniTicker.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"miniTicker\""))
+            {
+                IndividualMiniTicker.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"allTickers\""))
+            {
+                AllTicker.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"ticker\""))
+            {
+                IndividualTicker.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"kline_"))
+            {
+                Klines.ProcessRecievedMessage(e.Data);
             }
         }
 

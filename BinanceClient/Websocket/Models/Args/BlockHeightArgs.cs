@@ -1,4 +1,4 @@
-﻿namespace BinanceClient.Websocket
+﻿namespace BinanceClient.Websocket.Models
 {
     public class BlockHeightArgs
     {

@@ -128,6 +128,8 @@
     <Compile Include="Http\Get\Models\TokensResponse.cs" />
     <Compile Include="Http\Get\Models\TradesResponse.cs" />
     <Compile Include="Http\Get\Models\TransactionsResponse.cs" />
+    <Compile Include="Http\Helpers\OrderBookAsksConverter.cs" />
+    <Compile Include="Http\Helpers\OrderBookBidsConverter.cs" />
     <Compile Include="Http\Helpers\DateFieldConverter.cs" />
     <Compile Include="Http\Helpers\JavaScriptDateConverter.cs" />
     <Compile Include="Http\Helpers\OrderStatusConverter.cs" />
@@ -141,10 +143,28 @@
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proto\Dex.cs" />
-    <Compile Include="Websocket\BlockHeight.cs" />
-    <Compile Include="Websocket\Models\BlockHeightArgs.cs" />
+    <Compile Include="Websocket\Models\Args\BookDepthArgs.cs" />
+    <Compile Include="Websocket\Models\Args\KlineArgs.cs" />
+    <Compile Include="Websocket\Models\BookDepthMessage.cs" />
+    <Compile Include="Websocket\Models\KlineMessage.cs" />
+    <Compile Include="Websocket\Models\Args\TickerIndividualArgs.cs" />
+    <Compile Include="Websocket\Models\IndividualSymbolsTickerMessage.cs" />
+    <Compile Include="Websocket\Models\AllSymbolsTickerMessage.cs" />
+    <Compile Include="Websocket\Models\Args\TickerAllArgs.cs" />
+    <Compile Include="Websocket\Models\IndividualSymbolMiniTickerMessage.cs" />
+    <Compile Include="Websocket\Models\Args\MiniTickerIndividualArgs.cs" />
+    <Compile Include="Websocket\Streams\AllMiniTicker.cs" />
+    <Compile Include="Websocket\Streams\BookDepth.cs" />
+    <Compile Include="Websocket\Streams\Klines.cs" />
+    <Compile Include="Websocket\Streams\IndividualTicker.cs" />
+    <Compile Include="Websocket\Streams\BlockHeight.cs" />
+    <Compile Include="Websocket\Streams\AllTicker.cs" />
+    <Compile Include="Websocket\Models\AllSymbolsMiniTickerMessage.cs" />
+    <Compile Include="Websocket\Models\Args\BlockHeightArgs.cs" />
     <Compile Include="Websocket\IWebsocketStream.cs" />
+    <Compile Include="Websocket\Models\Args\MiniTickerAllArgs.cs" />
     <Compile Include="Websocket\Models\WebSocketConnectionException.cs" />
+    <Compile Include="Websocket\Streams\IndividualMiniTicker.cs" />
     <Compile Include="Websocket\Websockets.cs" />
   </ItemGroup>
   <ItemGroup>
