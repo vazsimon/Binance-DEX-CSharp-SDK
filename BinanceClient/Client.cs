@@ -3,7 +3,7 @@ using BinanceClient.BroadcastTransactions.Models;
 using BinanceClient.Crypto;
 using BinanceClient.Http;
 using BinanceClient.Http.Post.Models;
-using BinanceClient.Models;
+using BinanceClient.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

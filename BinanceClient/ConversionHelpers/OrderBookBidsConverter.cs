@@ -5,29 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinanceClient.Http.Helpers
+namespace BinanceClient.ConversionHelpers
 {
     /// <summary>
     /// Converter to decode the javascript integer time to c# DateTime
     /// </summary>
-    public class OrderBookAsksConverter : JsonConverter
+    public class OrderBookBidsConverter : JsonConverter
     {
 
-        public OrderBookAsksConverter()
+        public OrderBookBidsConverter()
         {
 
         }
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(decimal[][]);
+            return objectType == typeof(SortedDictionary<decimal, decimal>);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.Null)
                 return null;
-            SortedDictionary<decimal, decimal> sd = new SortedDictionary<decimal, decimal>();
+            SortedDictionary<decimal, decimal> sd = new SortedDictionary<decimal, decimal>(new ReverseComparer<decimal>(Comparer<decimal>.Default));
             reader.Read();
             while (!(reader.TokenType == JsonToken.EndArray)) //ENd of whole book
             {

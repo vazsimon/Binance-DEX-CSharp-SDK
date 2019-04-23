@@ -10,24 +10,27 @@ using System.Threading.Tasks;
 namespace BinanceClient.Websocket
 {
 
-    public class BookDepthMessage
+    public class DiffDepthMessage
     {
         [JsonProperty(PropertyName = "stream")]
         public string Stream { get; set; }
         [JsonProperty(PropertyName = "data")]
-        public OrderBookSnapshot Data { get; set; }
+        public OrderBookUpdate Data { get; set; }
     }
 
-    public class OrderBookSnapshot
+    public class OrderBookUpdate
     {
-        [JsonProperty(PropertyName = "lastUpdateId")]
-        public long LastUpdateId { get; set; }
-        [JsonProperty(PropertyName = "symbol")]
+        [JsonProperty(PropertyName = "e")]
+        public string EventType { get; set; }
+        [JsonProperty(PropertyName = "E")]
+        public long EventTime { get; set; }
+        public DateTime EventTimeDF { get { return JavaScriptDateConverter.ConvertFromSeconds(this.EventTime); } }
+        [JsonProperty(PropertyName = "s")]
         public string Symbol { get; set; }
-        [JsonProperty(PropertyName = "bids")]
+        [JsonProperty(PropertyName = "b")]
         [JsonConverter(typeof(OrderBookBidsConverter))]
         public SortedDictionary<decimal,decimal> Bids { get; set; }
-        [JsonProperty(PropertyName = "asks")]
+        [JsonProperty(PropertyName = "a")]
         [JsonConverter(typeof(OrderBookAsksConverter))]
         public SortedDictionary<decimal, decimal> Asks { get; set; }
     }

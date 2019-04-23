@@ -1,6 +1,6 @@
 ﻿using BinanceClient.BroadcastTransactions;
 using BinanceClient.BroadcastTransactions.Models;
-using BinanceClient.Models;
+using BinanceClient.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

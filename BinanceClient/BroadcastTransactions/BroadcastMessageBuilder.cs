@@ -1,6 +1,7 @@
 ﻿using BinanceClient.BroadcastTransactions.Models;
 using BinanceClient.Crypto;
 using BinanceClient.Encode;
+using BinanceClient.Enums;
 using BinanceClientConsole;
 using Google.Protobuf;
 using System;

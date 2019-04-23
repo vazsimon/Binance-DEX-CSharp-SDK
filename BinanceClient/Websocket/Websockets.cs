@@ -22,7 +22,11 @@ namespace BinanceClient.Websockets
         public IndividualTicker IndividualTicker { get; set; }
         public Klines Klines { get; set; }
         public BookDepth BookDepth { get; set; }
-
+        public DiffDepth DiffDepth { get; set; }
+        public Trades Trades { get; set; }
+        public Transfer Transfer { get; set; }
+        public Account Account { get; set; }
+        public Orders Orders { get; set; }
 
         public Websockets(string url)
         {
@@ -40,6 +44,11 @@ namespace BinanceClient.Websockets
             IndividualTicker = new IndividualTicker(this);
             Klines = new Klines(this);
             BookDepth = new BookDepth(this);
+            DiffDepth = new DiffDepth(this);
+            Trades = new Trades(this);
+            Transfer = new Transfer(this);
+            Account = new Account(this);
+            Orders = new Orders(this);
         }
 
         public void Send(dynamic msg)
@@ -61,7 +70,23 @@ namespace BinanceClient.Websockets
         private void _ws_OnMessage(object sender, MessageEventArgs e)
         {
             //Pre-parsing message. Doesn't fully deserialize now to dynamic to improve performance
-            if (e.Data.StartsWith("{\"stream\":\"marketDepth\""))
+            if (e.Data.StartsWith("{\"stream\":\"orders\""))
+            {
+                Orders.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"trades\""))
+            {
+                Trades.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"accounts\""))
+            {
+                Account.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"marketDiff\""))
+            {
+                DiffDepth.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"marketDepth\""))
             {
                 BookDepth.ProcessRecievedMessage(e.Data);
             }
@@ -88,6 +113,14 @@ namespace BinanceClient.Websockets
             else if (e.Data.StartsWith("{\"stream\":\"kline_"))
             {
                 Klines.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"transfers\""))
+            {
+                Transfer.ProcessRecievedMessage(e.Data);
+            }
+            else if (e.Data.StartsWith("{\"stream\":\"transfers\""))
+            {
+                Transfer.ProcessRecievedMessage(e.Data);
             }
         }
 

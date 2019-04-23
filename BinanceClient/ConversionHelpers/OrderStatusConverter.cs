@@ -1,4 +1,5 @@
-﻿using BinanceClient.Http.Get.Models;
+﻿using BinanceClient.Enums;
+using BinanceClient.Http.Get.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinanceClient.Http.Helpers
+namespace BinanceClient.ConversionHelpers
 {
     /// <summary>
-    /// Converter to decode the TxType directly to c# enum
+    /// Converter to decode the order status directly to c# enum
     /// </summary>
-    public class TxTypeConverter : JsonConverter
+    public class OrderStatusConverter : JsonConverter
     {
 
-        public TxTypeConverter()
+        public OrderStatusConverter()
         {
 
         }
@@ -29,13 +30,13 @@ namespace BinanceClient.Http.Helpers
             if (reader.TokenType == JsonToken.Null)
                 return null;
 
-            var m = Enum.Parse(typeof(TxType), (string)reader.Value);
+            var m = Enum.Parse(typeof(OrderStatus), (string)reader.Value);
             return m;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue(((TxType)value).ToString());
+            writer.WriteValue(((OrderStatus)value).ToString() );
         }
     }
 }

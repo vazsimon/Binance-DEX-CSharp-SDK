@@ -1,5 +1,6 @@
 ﻿using BinanceClient.BroadcastTransactions.Models;
-using BinanceClient.Http.Helpers;
+using BinanceClient.ConversionHelpers;
+using BinanceClient.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

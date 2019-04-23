@@ -1,4 +1,4 @@
-﻿using BinanceClient.Http.Helpers;
+﻿using BinanceClient.ConversionHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

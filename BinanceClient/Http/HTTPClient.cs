@@ -1,4 +1,5 @@
 ﻿using BinanceClient.Crypto;
+using BinanceClient.Enums;
 using BinanceClient.Http.Get;
 using BinanceClient.Http.Get.Models;
 using BinanceClient.Http.Post;

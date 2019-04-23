@@ -1,26 +1,28 @@
-﻿using Newtonsoft.Json;
+﻿using BinanceClient.Enums;
+using BinanceClient.Http.Get.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinanceClient.Http.Helpers
+namespace BinanceClient.ConversionHelpers
 {
     /// <summary>
-    /// Converter to decode the javascript integer time to c# DateTime
+    /// Converter to decode the TxType directly to c# enum
     /// </summary>
-    public class DateFieldConverter : JsonConverter
+    public class TxTypeConverter : JsonConverter
     {
 
-        public DateFieldConverter()
+        public TxTypeConverter()
         {
 
         }
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(long);
+            return objectType == typeof(string);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -28,13 +30,13 @@ namespace BinanceClient.Http.Helpers
             if (reader.TokenType == JsonToken.Null)
                 return null;
 
-            var m = JavaScriptDateConverter.Convert((long)reader.Value);
+            var m = Enum.Parse(typeof(TxType), (string)reader.Value);
             return m;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue(((long)value).ToString());
+            writer.WriteValue(((TxType)value).ToString());
         }
     }
 }

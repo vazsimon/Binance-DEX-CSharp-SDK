@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinanceClient.Http.Helpers
+namespace BinanceClient.ConversionHelpers
 {
     /// <summary>
     /// Provides a Convert method to convert between C# DateTime values and JavaScript parsable Int64 date values. 
@@ -26,6 +26,11 @@ namespace BinanceClient.Http.Helpers
             return System.Convert.ToInt64((from - _jan1st1970).TotalMilliseconds);
         }
 
+        public static long ConvertToSeconds(DateTime from)
+        {
+            return System.Convert.ToInt64((from - _jan1st1970).TotalSeconds);
+        }
+
         /// <summary>
         /// Converts a (JavaScript parsable) Int64 into a DateTime.
         /// </summary>
@@ -34,6 +39,11 @@ namespace BinanceClient.Http.Helpers
         public static DateTime Convert(long from)
         {
             return _jan1st1970.AddMilliseconds(from);
+        }
+
+        public static DateTime ConvertFromSeconds(long from)
+        {
+            return _jan1st1970.AddSeconds(from);
         }
     }
 }

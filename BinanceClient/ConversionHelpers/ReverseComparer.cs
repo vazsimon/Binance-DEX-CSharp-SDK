@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinanceClient.Http.Helpers
+namespace BinanceClient.ConversionHelpers
 {
     public sealed class ReverseComparer<T> : IComparer<T>
     {
