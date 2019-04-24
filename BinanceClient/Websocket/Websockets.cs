@@ -1,4 +1,5 @@
-﻿using BinanceClient.Websocket;
+﻿using BinanceClient.Crypto;
+using BinanceClient.Websocket;
 using BinanceClient.Websocket.Models;
 using Newtonsoft.Json;
 using System;
@@ -28,9 +29,10 @@ namespace BinanceClient.Websockets
         public Account Account { get; set; }
         public Orders Orders { get; set; }
 
-        public Websockets(string url)
+        public Websockets(Network network)
         {
-            _ws = new WebSocket(url);
+            var networkEnv = BinanceEnvironment.GetEnvironment(network);
+            _ws = new WebSocket(networkEnv.WssApiAddress);
             _ws.SslConfiguration.EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12;
             _ws.EmitOnPing = true;
 
@@ -121,6 +123,14 @@ namespace BinanceClient.Websockets
             else if (e.Data.StartsWith("{\"stream\":\"transfers\""))
             {
                 Transfer.ProcessRecievedMessage(e.Data);
+            }
+            else if (!string.IsNullOrWhiteSpace(e.Data))
+            {
+                //We might received an error text from backend, have to raise attention if so.                
+                if (e.Data.Contains("error"))
+                {
+                    throw new WebSocketConnectionException(string.Format("Websocket DEX backend sent error message: {0}",e.Data));
+                }
             }
         }
 

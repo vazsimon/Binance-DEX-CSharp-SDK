@@ -52,7 +52,7 @@ namespace BinanceClient
             _httpClient = new HTTPClient(w.Env.Network);
             this.sequenceEnsureMode = seqEnsureMode;
             BroadcastLockObject = new object();
-            _ws = new Websockets.Websockets(w.Env.WssApiAddress);
+            _ws = new Websockets.Websockets(w.Env.Network);
         }
 
 

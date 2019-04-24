@@ -19,8 +19,8 @@ namespace BinanceClient.Http.Get.Models
         [JsonProperty(PropertyName = "bidQuantity")]
         public decimal BidQuantity { get; set; }
         [JsonProperty(PropertyName = "closeTime")]
-        [JsonConverter(typeof(DateFieldConverter))]
-        public DateTime CloseTime { get; set; }
+        public long CloseTime { get; set; }
+        public DateTime CloseTimeDF { get { return JavaScriptDateConverter.Convert(CloseTime); } }
         [JsonProperty(PropertyName = "count")]
         public long Count { get; set; }
         [JsonProperty(PropertyName = "firstId")]
@@ -38,8 +38,8 @@ namespace BinanceClient.Http.Get.Models
         [JsonProperty(PropertyName = "openPrice")]
         public decimal OpenPrice { get; set; }
         [JsonProperty(PropertyName = "openTime")]
-        [JsonConverter(typeof(DateFieldConverter))]
-        public DateTime OpenTime { get; set; }
+        public long OpenTime { get; set; }
+        public DateTime OpenTimeDF { get { return JavaScriptDateConverter.Convert(OpenTime); } }
         [JsonProperty(PropertyName = "prevClosePrice")]
         public decimal PrevClosePrice { get; set; }
         [JsonProperty(PropertyName = "priceChangePercent")]

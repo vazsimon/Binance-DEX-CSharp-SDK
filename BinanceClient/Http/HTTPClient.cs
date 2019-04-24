@@ -4,6 +4,7 @@ using BinanceClient.Http.Get;
 using BinanceClient.Http.Get.Models;
 using BinanceClient.Http.Post;
 using BinanceClient.Http.Post.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -295,7 +296,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = DepthResponse.FromJSONString(response);
+            var ret = JsonConvert.DeserializeObject<DepthResponse>(response);
             return ret;
         }
 
@@ -336,7 +337,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = KlinesResponse.FromJSONString(response);
+            var ret = JsonConvert.DeserializeObject<List<KlinesResponse>>(response);
             return ret;
         }
 
@@ -511,7 +512,7 @@ namespace BinanceClient.Http
             StringBuilder sbQueyrFilter = new StringBuilder();
             if (!string.IsNullOrWhiteSpace(symbol))
             {
-                sbQueyrFilter.AppendFormat("&symbol={0}", symbol);
+                sbQueyrFilter.AppendFormat("?symbol={0}", symbol);
             }
             if (sbQueyrFilter.Length > 0)
             {
@@ -601,6 +602,8 @@ namespace BinanceClient.Http
 
             if (sbQueyrFilter.Length > 0)
             {
+                //reset first parameter start according to url params
+                sbQueyrFilter[0] = '?';
                 url = string.Format("{0}{1}", url, sbQueyrFilter);
             }
 

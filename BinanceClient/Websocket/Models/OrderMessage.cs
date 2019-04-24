@@ -54,12 +54,12 @@ namespace BinanceClient.Websocket
         public string Commission { get; set; }
         [JsonProperty(PropertyName = "T")]
         public long TransactionTime { get; set; }
-        public DateTime TransactionTimeDF { get { return JavaScriptDateConverter.ConvertFromSeconds(this.TransactionTime / 1000000000); } }
+        public DateTime TransactionTimeDF { get { return JavaScriptDateConverter.Convert(this.TransactionTime / 1000000); } }
         [JsonProperty(PropertyName = "t")]
         public string TradeId { get; set; }
         [JsonProperty(PropertyName = "O")]
         public long OrderCreationTime { get; set; }
-        public DateTime OrderCreationTimeDF { get { return JavaScriptDateConverter.ConvertFromSeconds(this.OrderCreationTime / 1000000000); } }
+        public DateTime OrderCreationTimeDF { get { return JavaScriptDateConverter.Convert(this.OrderCreationTime / 1000000); } }
     }   
     
 }

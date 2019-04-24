@@ -22,7 +22,7 @@ namespace BinanceClient.Websocket.Models
         public string EventType { get; set; }
         [JsonProperty(PropertyName = "E")]
         public long EventTime { get; set; }
-        public DateTime EventTimeDF { get { return JavaScriptDateConverter.Convert(EventTime);} }
+        public DateTime EventTimeDF { get { return JavaScriptDateConverter.ConvertFromSeconds(EventTime);} }
         [JsonProperty(PropertyName = "s")]
         public string Symbol { get; set; }
         [JsonProperty(PropertyName = "c")]

@@ -34,7 +34,7 @@ namespace BinanceClient.Websocket.Models
         public string SellerOrderId { get; set; }
         [JsonProperty(PropertyName = "T")]
         public long TradeTime { get; set; }
-        public DateTime TradeTimeDF { get { return JavaScriptDateConverter.ConvertFromSeconds(this.TradeTime / 1000000000); } }
+        public DateTime TradeTimeDF { get { return JavaScriptDateConverter.Convert(this.TradeTime / 1000000); } }
         [JsonProperty(PropertyName = "sa")]
         public string SellerAddress { get; set; }
         [JsonProperty(PropertyName = "ba")]

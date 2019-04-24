@@ -23,8 +23,8 @@ namespace BinanceClient.Http.Get.Models
         [JsonProperty(PropertyName = "blockHeight")]
         public long BlockHeight { get; set; }
         [JsonProperty(PropertyName = "blockTime")]
-        [JsonConverter(typeof(DateFieldConverter))]
-        public DateTime BlockTime { get; set; }
+        public long BlockTime { get; set; }
+        public DateTime BlockTimeDF { get { return JavaScriptDateConverter.Convert(BlockTime); } }
         [JsonProperty(PropertyName = "fee")]
         public string Fee { get; set; }
         [JsonProperty(PropertyName = "tradeCount")]

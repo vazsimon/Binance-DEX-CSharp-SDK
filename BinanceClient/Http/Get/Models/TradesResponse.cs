@@ -43,8 +43,8 @@ namespace BinanceClient.Http.Get.Models
         [JsonProperty(PropertyName = "symbol")]
         public string Symbol { get; set; }
         [JsonProperty(PropertyName = "time")]
-        [JsonConverter(typeof(DateFieldConverter))]
-        public DateTime Time { get; set; }
+        public long Time { get; set; }
+        public DateTime TimeDF { get { return JavaScriptDateConverter.Convert(Time); } }
         [JsonProperty(PropertyName = "tradeId")]
         public string TradeId { get; set; }
     }

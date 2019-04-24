@@ -102,6 +102,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="BroadcastTransactions\BroadcastMessageBuilder.cs" />
     <Compile Include="BroadcastTransactions\Models\BlockchainNetworkMismatchException.cs" />
+    <Compile Include="ConversionHelpers\KlinesConverter.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="BroadcastTransactions\Models\MultipleSendDestination.cs" />
     <Compile Include="Crypto\Helpers\Bech32Engine.cs" />
@@ -165,7 +166,7 @@
     <Compile Include="Websocket\Streams\AllMiniTicker.cs" />
     <Compile Include="Websocket\Streams\DiffDepth.cs" />
     <Compile Include="Websocket\Streams\BookDepth.cs" />
-    <Compile Include="Websocket\Streams\IndividualTicker - Copy.cs" />
+    <Compile Include="Websocket\Streams\IndividualTicker.cs" />
     <Compile Include="Websocket\Streams\Klines.cs" />
     <Compile Include="Websocket\Streams\Account.cs" />
     <Compile Include="Websocket\Streams\Transfer.cs" />
