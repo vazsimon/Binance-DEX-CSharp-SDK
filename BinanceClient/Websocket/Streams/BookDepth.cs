@@ -12,7 +12,7 @@ namespace BinanceClient.Websocket
 {
     public class BookDepth : IWebsocketStream
     {
-        Websockets.Websockets _ws;
+        Websockets.WebsocketClient _ws;
         public event EventHandler<BookDepthArgs> OnBookDepthReceived;
 
         public void ProcessRecievedMessage(string payload)
@@ -26,7 +26,7 @@ namespace BinanceClient.Websocket
             }
         }
 
-        public BookDepth(Websockets.Websockets ws)
+        public BookDepth(Websockets.WebsocketClient ws)
         {
             _ws = ws;
         }

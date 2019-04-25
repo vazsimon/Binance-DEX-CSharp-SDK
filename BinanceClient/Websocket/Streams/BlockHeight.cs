@@ -11,7 +11,7 @@ namespace BinanceClient.Websocket
 {
     public class BlockHeight : IWebsocketStream
     {
-        Websockets.Websockets _ws;
+        Websockets.WebsocketClient _ws;
         public event EventHandler<BlockHeightArgs> OnBlockHeightReceived;
 
         public void ProcessRecievedMessage(string payload)
@@ -25,7 +25,7 @@ namespace BinanceClient.Websocket
             }
         }
 
-        public BlockHeight(Websockets.Websockets ws)
+        public BlockHeight(Websockets.WebsocketClient ws)
         {
             _ws = ws;
         }

@@ -43,7 +43,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<AccountSequenceResponse>(response);
+            var ret = JsonConvert.DeserializeObject<AccountSequenceResponse>(response);
             return ret.Sequence;
         }
 
@@ -74,7 +74,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<AccountResponse>(response);
+            var ret = JsonConvert.DeserializeObject<AccountResponse>(response);
             return ret;
         }
 
@@ -104,7 +104,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<TimeResponse>(response);
+            var ret = JsonConvert.DeserializeObject<TimeResponse>(response);
             return ret;
         }
 
@@ -182,7 +182,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PeerResponse>>(response);
+            var ret = JsonConvert.DeserializeObject<List<PeerResponse>>(response);
             return ret;
         }
 
@@ -235,7 +235,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TokensResponse>>(response);
+            var ret = JsonConvert.DeserializeObject<List<TokensResponse>>(response);
             return ret;
         }
 
@@ -264,7 +264,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MarketsResponse>>(response);
+            var ret = JsonConvert.DeserializeObject<List<MarketsResponse>>(response);
             return ret;
         }
 
@@ -403,7 +403,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<OrdersResponse>(response);
+            var ret = JsonConvert.DeserializeObject<OrdersResponse>(response);
             return ret;
         }
 
@@ -456,7 +456,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<OrdersResponse>(response);
+            var ret = JsonConvert.DeserializeObject<OrdersResponse>(response);
             return ret;
         }
 
@@ -487,7 +487,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<Order>(response);
+            var ret = JsonConvert.DeserializeObject<Order>(response);
             return ret;
         }
 
@@ -525,7 +525,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TickerResponse>>(response);
+            var ret = JsonConvert.DeserializeObject<List<TickerResponse>>(response);
             return ret;
         }
 
@@ -613,7 +613,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<TradesResponse>(response);
+            var ret = JsonConvert.DeserializeObject<TradesResponse>(response);
             return ret;
         }
 
@@ -673,7 +673,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerSecondAllowed);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<BlockExchangeFeeResponse>(response);
+            var ret = JsonConvert.DeserializeObject<BlockExchangeFeeResponse>(response);
             return ret;
         }
 
@@ -744,7 +744,7 @@ namespace BinanceClient.Http
             var response = GetStringResponse(url, urlPattern, callsPerMinuteAllowed,60);
 
             //Call specific processing of returned values
-            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<TransactionsResponse>(response);
+            var ret = JsonConvert.DeserializeObject<TransactionsResponse>(response);
             return ret;
         }
 
@@ -784,7 +784,7 @@ namespace BinanceClient.Http
             try
             {                
                 var response = Broadcast.BroadcastToBlockchain(url, message);
-                var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BroadcastResponse>>(response);
+                var ret = JsonConvert.DeserializeObject<List<BroadcastResponse>>(response);
                 return ret.FirstOrDefault();
             }
             catch (Exception ex)

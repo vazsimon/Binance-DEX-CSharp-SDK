@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BinanceClient.ExchangeSpecificAlgos;
 
 namespace BinanceClient
 {
@@ -20,8 +21,11 @@ namespace BinanceClient
         private HTTPClient _httpClient;
         public HTTPClient HTTP { get { return _httpClient; } }
 
-        private Websockets.Websockets _ws;
-        public Websockets.Websockets Websockets { get { return _ws; } }
+        private Websockets.WebsocketClient _ws;
+        public Websockets.WebsocketClient Websockets { get { return _ws; } }
+
+        private RealtimeOrderBookHandler _rtBooks;
+        public RealtimeOrderBookHandler RTBooks { get { return _rtBooks; } }
 
         public SequenceEnsureMode sequenceEnsureMode { get; set; }
 
@@ -35,13 +39,13 @@ namespace BinanceClient
         //Lock object to ensure only one message is being created and submitted at a time to ensure sequence for transaction relplay protection.
         private object BroadcastLockObject;
 
-        public Client(string privateKey, Network network,SequenceEnsureMode sequenceEnsureMode = SequenceEnsureMode.VerifyBeforeSendAndWaitForConfirmation)
+        public Client(string privateKey, Network network,SequenceEnsureMode sequenceEnsureMode = SequenceEnsureMode.WaitForConfirmation)
         {
             var wallet = new Wallet(privateKey, network);
             Init(wallet, sequenceEnsureMode);            
         }
 
-        public Client(Wallet wallet, SequenceEnsureMode sequenceEnsureMode = SequenceEnsureMode.VerifyBeforeSendAndWaitForConfirmation)
+        public Client(Wallet wallet, SequenceEnsureMode sequenceEnsureMode = SequenceEnsureMode.WaitForConfirmation)
         {
             Init(wallet, sequenceEnsureMode);
         }
@@ -52,7 +56,8 @@ namespace BinanceClient
             _httpClient = new HTTPClient(w.Env.Network);
             this.sequenceEnsureMode = seqEnsureMode;
             BroadcastLockObject = new object();
-            _ws = new Websockets.Websockets(w.Env.Network);
+            _ws = new Websockets.WebsocketClient(w.Env.Network);
+            _rtBooks = new RealtimeOrderBookHandler(_httpClient, _ws);
         }
 
 

@@ -12,7 +12,7 @@ namespace BinanceClient.Websocket
 {
     public class DiffDepth : IWebsocketStream
     {
-        Websockets.Websockets _ws;
+        Websockets.WebsocketClient _ws;
         public event EventHandler<DiffDepthArgs> OnDiffDepthReceived;
 
         public void ProcessRecievedMessage(string payload)
@@ -26,7 +26,7 @@ namespace BinanceClient.Websocket
             }
         }
 
-        public DiffDepth(Websockets.Websockets ws)
+        public DiffDepth(Websockets.WebsocketClient ws)
         {
             _ws = ws;
         }

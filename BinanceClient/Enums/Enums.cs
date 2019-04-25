@@ -131,16 +131,16 @@ namespace BinanceClient.Enums
     public enum SequenceEnsureMode
     {
         /// <summary>
-        /// Safest choice, default behavior. For non time-critical use-cases Ensures that no sequence or transaction issues go unnoticed
+        /// Safest choice.. For non time-critical use-cases to ensures that no sequence or transaction issues go unnoticed. 
         /// </summary>
         VerifyBeforeSendAndWaitForConfirmation,
         /// <summary>
         /// Safe for sequence nubmer but we don't get an error if the transaction is rejected. For non time-critical use-cases. Before every call, we retrieve the actual sequence from the http api.
-        /// Still delays the broadcast of the transaction
+        /// Still delays the broadcast of the transaction. Also, this option ensures proper sequence number if other app is using the same private key
         /// </summary>
         VerifyBeforeSend,
         /// <summary>
-        /// Optimal balance for normal use, if no other app is using the private key. After every call, we see if the transaction got recorded to the blockchain or not.
+        /// Optimal balance for normal use, default behavior. Only good if no other app is using the private key. After every call, we see if the transaction got recorded to the blockchain or not.
         /// If it was successful, we increase the sequencenumber. There is no delay (verification) before entering transactions (fastest order entry), but afterwards, we
         /// have to wait until the transaction is recorded on the blockchain to see if we need to increase the sequence.
         /// </summary>

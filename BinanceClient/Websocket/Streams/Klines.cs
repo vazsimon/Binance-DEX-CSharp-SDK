@@ -13,7 +13,7 @@ namespace BinanceClient.Websocket
 {
     public class Klines : IWebsocketStream
     {
-        Websockets.Websockets _ws;
+        Websockets.WebsocketClient _ws;
         public event EventHandler<KlineArgs> OnKlineReceived;
 
         public void ProcessRecievedMessage(string payload)
@@ -27,7 +27,7 @@ namespace BinanceClient.Websocket
             }
         }
 
-        public Klines(Websockets.Websockets ws)
+        public Klines(Websockets.WebsocketClient ws)
         {
             _ws = ws;
         }

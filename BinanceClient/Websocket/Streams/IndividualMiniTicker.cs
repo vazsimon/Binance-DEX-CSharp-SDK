@@ -12,7 +12,7 @@ namespace BinanceClient.Websocket
 {
     public class IndividualMiniTicker : IWebsocketStream
     {
-        Websockets.Websockets _ws;
+        Websockets.WebsocketClient _ws;
         public event EventHandler<MiniTickerIndividualArgs> OnMiniTickerIndividualReceived;
 
         public void ProcessRecievedMessage(string payload)
@@ -26,7 +26,7 @@ namespace BinanceClient.Websocket
             }
         }
 
-        public IndividualMiniTicker(Websockets.Websockets ws)
+        public IndividualMiniTicker(Websockets.WebsocketClient ws)
         {
             _ws = ws;
         }

@@ -11,7 +11,7 @@ namespace BinanceClient.Websocket
 {
     public class Trades : IWebsocketStream
     {
-        Websockets.Websockets _ws;
+        Websockets.WebsocketClient _ws;
         public event EventHandler<TradesArgs> OnTradesReceived;
 
         public void ProcessRecievedMessage(string payload)
@@ -25,7 +25,7 @@ namespace BinanceClient.Websocket
             }
         }
 
-        public Trades(Websockets.Websockets ws)
+        public Trades(Websockets.WebsocketClient ws)
         {
             _ws = ws;
         }

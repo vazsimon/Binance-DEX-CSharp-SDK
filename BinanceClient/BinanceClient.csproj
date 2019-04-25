@@ -99,6 +99,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExchangeSpecificAlgos\AlgoEnums.cs" />
+    <Compile Include="ExchangeSpecificAlgos\OrderBookSkimmer\TopOfTheBookSkimmer.cs" />
+    <Compile Include="ExchangeSpecificAlgos\OrderBookSkimmer\TopOfTheBookSkimmerHandler.cs" />
+    <Compile Include="ExchangeSpecificAlgos\RealtimeOrderbook\OrderBookUpdatedArgs.cs" />
+    <Compile Include="ExchangeSpecificAlgos\RealtimeOrderbook\RealTimeOrderbook.cs" />
+    <Compile Include="ExchangeSpecificAlgos\RealtimeOrderbook\RealtimeOrderBookHandler.cs" />
+    <Compile Include="ExchangeSpecificAlgos\WebsocketStreamOutOfSyncException.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="BroadcastTransactions\BroadcastMessageBuilder.cs" />
     <Compile Include="BroadcastTransactions\Models\BlockchainNetworkMismatchException.cs" />

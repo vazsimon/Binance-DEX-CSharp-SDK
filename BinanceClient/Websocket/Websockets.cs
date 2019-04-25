@@ -12,7 +12,7 @@ using WebSocketSharp;
 
 namespace BinanceClient.Websockets
 {
-    public class Websockets
+    public class WebsocketClient
     {
         private WebSocket _ws;
         public bool Connected { get { return _ws.IsAlive; } }
@@ -29,7 +29,7 @@ namespace BinanceClient.Websockets
         public Account Account { get; set; }
         public Orders Orders { get; set; }
 
-        public Websockets(Network network)
+        public WebsocketClient(Network network)
         {
             var networkEnv = BinanceEnvironment.GetEnvironment(network);
             _ws = new WebSocket(networkEnv.WssApiAddress);
