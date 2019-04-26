@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace BinanceClient.ExchangeSpecificAlgos.OrderBookSkimmer
 {
+    /// <summary>
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!WARNING!!!!!!!!!!!!!!!!!!!!!!
+    /// Performance optimized class, this implementation doesn't make any additional checks that could take away time from sending out the orders and getting the fills.
+    /// Not suitable for all use-cases at this form.
+    /// For proper operation, you have to ensure the following pre-conditions
+    ///     - You don't have any open orders on the opposite side of accumulation/distribution
+    ///     - you have enough account balance of the required coins to fully complete the accumulation/distribution
+    ///     - you have to ensure no other app is using the private key during accumulation/distribution
+    ///     - once accumulation/distribution is complete, if you need higher resiliency in the Binance client, please update the client's sequenceEnsureMode accordingly. 
+    ///       This algo sets it to Manual to increase the chances of getting the orders in the nearest block.
+    /// </summary>
     public class TopOfTheBookSkimmerHandler
     {
         private Client _client;

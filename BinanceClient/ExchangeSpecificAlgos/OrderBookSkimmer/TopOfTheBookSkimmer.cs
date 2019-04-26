@@ -63,19 +63,11 @@ namespace BinanceClient.ExchangeSpecificAlgos.OrderBookSkimmer
                 if (update.Side == Enums.OrderSide.Buy && (update.OrderStatus == OrderStatus.FullyFill || update.OrderStatus == OrderStatus.PartialFill))
                 {
                     //cumulative will be OK, as we are using IOC orders
-                    Console.WriteLine(AmountToHandle);
                     AmountToHandle -= update.CumulativeFillQuantity;
-                    Console.WriteLine(AmountToHandle);
-                    Console.WriteLine("-------------------buy----------------");
-                    Console.WriteLine(JsonConvert.SerializeObject(update));
                 }
                 else if (update.Side == Enums.OrderSide.Sell && (update.OrderStatus == OrderStatus.FullyFill || update.OrderStatus == OrderStatus.PartialFill))
                 {
-                    Console.WriteLine(AmountToHandle);
                     AmountToHandle += update.CumulativeFillQuantity;
-                    Console.WriteLine(AmountToHandle);
-                    Console.WriteLine("-------------------sell----------------");
-                    Console.WriteLine(JsonConvert.SerializeObject(update));
                 }
                 _orderUpdateReceived = true;
                 CheckConditionsAndProcess();
@@ -129,7 +121,6 @@ namespace BinanceClient.ExchangeSpecificAlgos.OrderBookSkimmer
                             {
                                 newOrderQty = AmountToHandle;
                             }
-                            Console.WriteLine("Buying");
                             _client.NewOrder(Symbol, OrderType.Limit, Side.Buy,newOrderPrice, newOrderQty, TimeInForce.IOC);
                         }
                         else if (AmountToHandle < 0)
@@ -139,7 +130,6 @@ namespace BinanceClient.ExchangeSpecificAlgos.OrderBookSkimmer
                             {
                                 newOrderQty = -1 * AmountToHandle;
                             }
-                            Console.WriteLine("selling");
                             _client.NewOrder(Symbol, OrderType.Limit, Side.Sell, newOrderPrice, newOrderQty, TimeInForce.IOC);                            
                         }
                         //Now we just wait for the ACK and an order book update to restart cycle until we bring down the amountToHandle to 0
