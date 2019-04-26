@@ -18,6 +18,7 @@ namespace BinanceClient.ExchangeSpecificAlgos.OrderBookSkimmer
             _client = client;
             Skimmers = new Dictionary<string, TopOfTheBookSkimmer>();
             _client.Websockets.Orders.OnOrdersReceived += Orders_OnOrdersReceived;
+            _client.Websockets.Orders.Subscribe(_client.Wallet.Address);
             //------------------------------------------------TURNING OFF all Sequence number ensuring for speed (except for the auto-increment), we are using websocket streams for info------------------
             //-------------------------------------------------ALGO IS NOT SAFE AT EVERY USE CASE, be careful on:---------------------------------
             //-------------------------------------------------Failed transactions, other processes using same private key
