@@ -147,6 +147,7 @@
     <Compile Include="Http\Get\Models\AccountSequenceResponse.cs" />
     <Compile Include="Http\Post\Broadcast.cs" />
     <Compile Include="Http\Post\Models\BroadcastResponse.cs" />
+    <Compile Include="NodeRPC\Models\Args\RPCEventArgs.cs" />
     <Compile Include="NodeRPC\NodeRPCClient.cs" />
     <Compile Include="NodeRPC\WebsocketJsonRpcConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

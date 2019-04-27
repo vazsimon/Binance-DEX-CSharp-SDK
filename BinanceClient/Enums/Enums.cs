@@ -152,6 +152,26 @@ namespace BinanceClient.Enums
         Manual
     }
 
+
+    public enum RPCBroadcastMode
+    {
+        /// <summary>
+        /// This method just return transaction hash right away and there is no return from CheckTx or DeliverTx.
+        /// </summary>
+        async,
+        /// <summary>
+        /// The transaction will be broadcasted and returns with the response from CheckTx and DeliverTx.
+        /// This method will waitCONTRACT: only returns error if mempool.CheckTx() errs or if we timeout waiting for tx to commit.
+        /// If CheckTx or DeliverTx fail, no error will be returned, but the returned result will contain a non-OK ABCI code.
+        /// </summary>
+        commit,
+        /// <summary>
+        /// The transaction will be broadcasted and returns with the response from CheckTx.
+        /// </summary>
+        sync
+    }
+
+
     public static class TransferNameConverter
     {
         public static string Convert(KlineInterval interval)

@@ -1,4 +1,5 @@
-﻿using BinanceClient.Websocket.Models;
+﻿using BinanceClient.NodeRPC.Models.Args;
+using BinanceClient.Websocket.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace BinanceClient.NodeRPC
         private Dictionary<long, dynamic> responses;
         private Dictionary<long, ManualResetEventSlim> resetEvents;
         private object preparationLock;
+
+        public event EventHandler<RPCEventArgs> OnEventReceived;
 
 
         public WebsocketJsonRpcConnector(string address)
@@ -44,7 +47,7 @@ namespace BinanceClient.NodeRPC
             throw new WebSocketConnectionException("Error occured on RPC websocket stream", e.Exception);
         }
 
-        public dynamic GetResponse(string method)
+        public dynamic GetResponse(string method,string payload = "")
         {
 
             string s;
@@ -55,9 +58,16 @@ namespace BinanceClient.NodeRPC
                 id++;
                 currentId = id;
                 mre = new ManualResetEventSlim(false);
-                resetEvents[id] = mre;
-                var newMsg = new { jsonrpc = "2.0", method = method, id = id };
-                s = JsonConvert.SerializeObject(newMsg);                
+                resetEvents[id] = mre;  
+                if (string.IsNullOrWhiteSpace(payload))
+                {
+                    s = string.Format("{{\"jsonrpc\":\"2.0\",\"method\":\"{0}\",\"id\":{1}}}", method, id);
+                }
+                else
+                {
+                    s = string.Format("{{\"jsonrpc\":\"2.0\",\"method\":\"{0}\",\"params\":{2},\"id\":{1}}}", method, id,payload);
+                }
+                
             }
             if (!Connected)
             {
@@ -79,9 +89,21 @@ namespace BinanceClient.NodeRPC
             if (!e.IsPing)
             {
                 dynamic msg = JsonConvert.DeserializeObject(e.Data);
-                responses[msg.id.Value] = msg.result;
-                resetEvents[msg.id.Value].Set();
-                resetEvents.Remove(msg.id.Value);
+                if (msg.id.ToString().Contains("event"))
+                {
+                    var handler = OnEventReceived;
+                    if (handler != null)
+                    {
+                        var arg = new RPCEventArgs { Result = msg.result };
+                        handler(this, arg);
+                    }
+                }
+                else
+                {
+                    responses[msg.id.Value] = msg.result;
+                    resetEvents[msg.id.Value].Set();
+                    resetEvents.Remove(msg.id.Value);
+                }                
             }            
         }
     }
