@@ -49,11 +49,25 @@ namespace BinanceClient.Crypto
         private void Init()
         {
             HTTPClient httpClient = new HTTPClient(Env.Network);
-            var accountInfo = httpClient.GetAccount(Address);
-            _accountNumber = accountInfo.AccountNumber;
-            _sequence = accountInfo.Sequence;
+            try
+            {
+                var accountInfo = httpClient.GetAccount(Address);
+                _accountNumber = accountInfo.AccountNumber;
+                _sequence = accountInfo.Sequence;
 
-            _chainId = _env.ChainId;
+                _chainId = _env.ChainId;
+            }
+            catch (BinanceHTTPApiRequestException ex)
+            {
+                if (ex.InnerException.Message.Contains("404"))
+                {
+                    // new empty wallet, we can still show the address. Transaction will not work, as the wallet is empty and the blockchain didn't give it a number yet.
+                }
+                else
+                {
+                    throw;
+                }                
+            }            
         }
 
    

@@ -42,6 +42,8 @@ namespace BinanceClient.ConversionHelpers
             return sd;
         }
 
+        public override bool CanWrite { get { return false; } }
+
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             writer.WriteValue(value.ToString());
