@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BinanceClient.Crypto;
+using BinanceClient.Enums;
 
 namespace BinanceClient.BroadcastTransactions.Tests
 {

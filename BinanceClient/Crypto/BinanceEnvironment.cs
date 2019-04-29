@@ -28,8 +28,8 @@ namespace BinanceClient.Crypto
             {
                 be._hrp = "tbnb";
                 be._chainId = "Binance-Chain-Nile";
-                be._httpsApiAddress = "https://dex.binance.org/api/v1";
-                be._wssApiAddress = "wss://dex.binance.org/api/ws";
+                be._httpsApiAddress = "https://testnet-dex.binance.org/api/v1";
+                be._wssApiAddress = "wss://testnet-dex.binance.org/api/ws";
             }
             else if (env == Network.Mainnet)
             {

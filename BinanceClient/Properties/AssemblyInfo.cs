@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BinanceClient")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Binance DEX API Client")]
+[assembly: AssemblyDescription("SDK for Connecting to Binance DEX through HTTP and WSS api")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BinanceClient")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCompany("Simon Vaz")]
+[assembly: AssemblyProduct("Binance DEX API Client")]
+[assembly: AssemblyCopyright("Copyright © Simon Vaz 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
