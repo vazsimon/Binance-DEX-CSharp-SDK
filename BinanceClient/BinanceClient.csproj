@@ -195,6 +195,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Proto\dex.proto" />
+    <None Include="gettingStarted.md" />
+    <None Include="advancedFunctions.md" />
+    <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -28,15 +28,15 @@ namespace BinanceClient.Crypto
             {
                 be._hrp = "tbnb";
                 be._chainId = "Binance-Chain-Nile";
-                be._httpsApiAddress = "https://testnet-dex.binance.org/api/v1";
-                be._wssApiAddress = "wss://testnet-dex.binance.org/api/ws";
+                be._httpsApiAddress = "https://dex.binance.org/api/v1";
+                be._wssApiAddress = "wss://dex.binance.org/api/ws";
             }
-            else if (env == Network.Production)
+            else if (env == Network.Mainnet)
             {
                 be._hrp = "bnb";
-                be._chainId = "";
-                be._httpsApiAddress = "";
-                be._wssApiAddress = "";
+                be._chainId = "Binance-Chain-Tigris";
+                be._httpsApiAddress = "https://dex.binance.org/api/v1";
+                be._wssApiAddress = "wss://dex.binance.org/api/ws";
             }
             else
             {
@@ -50,7 +50,6 @@ namespace BinanceClient.Crypto
     public enum Network
     {
         Test,
-        Production,
-        ProtocolTest
+        Mainnet
     }
 }

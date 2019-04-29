@@ -16,7 +16,7 @@ namespace BinanceClient.NodeRPC
         private WebSocket _ws;
         public bool Connected { get { return _ws.IsAlive; } }
 
-        private long id;
+        private long _id;
         private Dictionary<long, dynamic> responses;
         private Dictionary<long, ManualResetEventSlim> resetEvents;
         private object preparationLock;
@@ -32,7 +32,7 @@ namespace BinanceClient.NodeRPC
 
             _ws.OnMessage += _ws_OnMessage;
             _ws.OnError += _ws_OnError;
-            id = 0;
+            _id = 0;
             responses = new Dictionary<long, dynamic>();
             resetEvents = new Dictionary<long, ManualResetEventSlim>();
             preparationLock = new object();
@@ -55,17 +55,17 @@ namespace BinanceClient.NodeRPC
             ManualResetEventSlim mre;
             lock (preparationLock)
             {
-                id++;
-                currentId = id;
+                _id++;
+                currentId = _id;
                 mre = new ManualResetEventSlim(false);
-                resetEvents[id] = mre;  
+                resetEvents[_id] = mre;  
                 if (string.IsNullOrWhiteSpace(payload))
                 {
-                    s = string.Format("{{\"jsonrpc\":\"2.0\",\"method\":\"{0}\",\"id\":{1}}}", method, id);
+                    s = string.Format("{{\"jsonrpc\":\"2.0\",\"method\":\"{0}\",\"id\":{1}}}", method, _id);
                 }
                 else
                 {
-                    s = string.Format("{{\"jsonrpc\":\"2.0\",\"method\":\"{0}\",\"params\":{2},\"id\":{1}}}", method, id,payload);
+                    s = string.Format("{{\"jsonrpc\":\"2.0\",\"method\":\"{0}\",\"params\":{2},\"id\":{1}}}", method, _id,payload);
                 }
                 
             }

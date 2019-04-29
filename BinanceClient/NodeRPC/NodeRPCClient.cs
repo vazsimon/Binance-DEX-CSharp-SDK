@@ -11,12 +11,10 @@ namespace BinanceClient.NodeRPC
 {
     public class NodeRPCClient
     {
-        private string address;
         WebsocketJsonRpcConnector connector;
         public NodeRPCClient(string address)
         {
             connector = new WebsocketJsonRpcConnector(address);
-            this.address = address;
             connector.OnEventReceived += Connector_OnEventReceived;
         }
 

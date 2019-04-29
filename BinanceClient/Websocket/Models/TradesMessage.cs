@@ -22,6 +22,8 @@ namespace BinanceClient.Websocket.Models
         public string EventType { get; set; }
         [JsonProperty(PropertyName = "E")]
         public long EventHeight { get; set; }
+        [JsonProperty(PropertyName = "s")]
+        public string Symbol { get; set; }
         [JsonProperty(PropertyName = "t")]
         public string TradeId { get; set; }
         [JsonProperty(PropertyName = "p")]

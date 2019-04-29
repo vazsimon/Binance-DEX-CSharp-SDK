@@ -20,7 +20,7 @@ namespace BinanceClient.ExchangeSpecificAlgos
         private object queueLock;
         private object stateLock;
 
-        private long previousUpdateEventTime;
+        private long _previousUpdateEventTime;
 
         private string _symbol;
         public string Symbol { get { return _symbol; } }
@@ -41,7 +41,7 @@ namespace BinanceClient.ExchangeSpecificAlgos
             stateLock = new object();
             UpdateList = new Queue<OrderBookUpdate>();
 
-            previousUpdateEventTime = -1;
+            _previousUpdateEventTime = -1;
 
             SetState(RealtimeOrderBookState.Initializing);            
         }
@@ -134,7 +134,7 @@ namespace BinanceClient.ExchangeSpecificAlgos
 
         private void ProcessUpdate(OrderBookUpdate upd)
         {
-            if (previousUpdateEventTime < upd.EventTime)
+            if (_previousUpdateEventTime < upd.EventTime)
             {
                 foreach (var updAsk in upd.Asks)
                 {
@@ -158,7 +158,7 @@ namespace BinanceClient.ExchangeSpecificAlgos
                         BidBook[updBid.Key] = updBid.Value;
                     }
                 }
-                previousUpdateEventTime = upd.EventTime;
+                _previousUpdateEventTime = upd.EventTime;
                 var handler = OnOrderbookUpdated; ;
                 if (handler != null)
                 {
