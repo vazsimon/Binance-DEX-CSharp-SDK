@@ -4,16 +4,11 @@ using BinanceClient.Crypto;
 using BinanceClient.Enums;
 using BinanceClient.ExchangeSpecificAlgos;
 using BinanceClient.ExchangeSpecificAlgos.OrderBookSkimmer;
-using BinanceClient.Http.Get.Models;
 using BinanceClient.NodeRPC;
 using BinanceClient.Websocket.Models;
 using BinanceClient.Websocket.Models.Args;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DemoConsole
 {
@@ -64,7 +59,7 @@ namespace DemoConsole
                         break;
                     default:
                         break;
-                }               
+                }
             }
 
         }
@@ -85,7 +80,7 @@ namespace DemoConsole
             realtimebooks = new RealtimeOrderBookHandler(client.HTTP, client.Websockets);
             realtimebooks.Subscribe("000-EF6_BNB");
             realtimebooks.BooksForSymbols["000-EF6_BNB"].OnOrderbookUpdated += Program_OnOrderbookUpdated;
-            Console.WriteLine("Orderbook set up successfully"); 
+            Console.WriteLine("Orderbook set up successfully");
         }
 
         private static void Program_OnOrderbookUpdated(object sender, OrderBookUpdatedArgs e)
@@ -105,7 +100,7 @@ namespace DemoConsole
                 var resp = clientRPC.BroadcastTransaction(msg, RPCBroadcastMode.async);
                 client.Wallet.IncrementSequence();
                 cwf(resp);
-            }            
+            }
         }
 
         private static void Broadcast()
@@ -165,7 +160,7 @@ namespace DemoConsole
             Console.WriteLine("Press enter");
             Console.ReadLine();
 
-            var r1= client.HTTP.GetBlockExchangeFee("tbnb1xn2sx5tyef5gvpw5ggmx3ycmdy4m6fj57zanqd");
+            var r1 = client.HTTP.GetBlockExchangeFee("tbnb1xn2sx5tyef5gvpw5ggmx3ycmdy4m6fj57zanqd");
             cwf(r1);
             Console.WriteLine("GetBlockExchangeFee");
             Console.WriteLine("Press enter");

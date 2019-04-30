@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.1</Version>
+    <Authors>Simon Vaz</Authors>
+    <Company>Simon Vaz</Company>
+    <PackageId>BinanceDEXClient</PackageId>
+    <Product>BinanceDEXClient</Product>
+    <PackageReleaseNotes>Project upgraded to .Net standard 2.0</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/vazsimon/Binance-DEX-CSharp-SDK</PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageTags>Binance DEX Trading Blockchain</PackageTags>
+    <Description>Binance DEX .net api client</Description>
+    <Copyright>Copyright Simon Vaz 2019</Copyright>
+    <AssemblyName>BinanceDEXClient</AssemblyName>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="license.txt" />
+    <None Remove="license.txt" />
+    <None Remove="license.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.7.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0-preview4.19212.13" />
+    <PackageReference Include="NBitcoin.Altcoins" Version="1.0.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\netStandard2\BinanceClient\BinanceClient\license.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

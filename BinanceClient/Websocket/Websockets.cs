@@ -53,7 +53,7 @@ namespace BinanceClient.Websockets
             Orders = new Orders(this);
         }
 
-        public void Send(dynamic msg)
+        public void Send(object msg)
         {
             if (!Connected)
             {

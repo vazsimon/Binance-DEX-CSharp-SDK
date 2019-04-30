@@ -19,7 +19,11 @@ Fully featured SDK for Binance DEX. Use it, enhance it further, make some profit
   - [Market Data HTTP](#Market-Data-HTTP)
   - [Realtime Market Data Websocket](#Realtime-Market-Data-Websocket)
 ## Installation
-	Nuget package installation comes here
+Search for the BinanceDEXClient in the public NuGet library or
+
+open tools > NuGet Package Manager > package Manager console:
+
+	PM> Install-Package BinanceDEXClient
 Alternatively, you can also clone or download the repository and build the binaries yourself.
 
 
