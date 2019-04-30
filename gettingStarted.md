@@ -23,7 +23,7 @@ Search for the BinanceDEXClient in the public NuGet library or
 
 open tools > NuGet Package Manager > package Manager console:
 
-	PM> Install-Package BinanceDEXClient
+	PM> Install-Package BinanceDEXClient -Version 1.0.2.1
 
 Alternatively, you can also clone or download the repository and build the binaries yourself.
 
