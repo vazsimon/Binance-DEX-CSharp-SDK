@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BinanceClient.Crypto;
 using static BinanceClientConsole.StdSignature.Types;
 
 namespace BinanceClient.Encode
@@ -31,14 +32,14 @@ namespace BinanceClient.Encode
         static AminoBuilder()
         {
             MessageCodes = new Dictionary<AminoType, byte[]>();
-            MessageCodes.Add(AminoType.StandardTransaction, Helpers.StringToByteArrayFastest("F0625DEE"));
-            MessageCodes.Add(AminoType.Send, Helpers.StringToByteArrayFastest("2A2C87FA"));
-            MessageCodes.Add(AminoType.NewOrder, Helpers.StringToByteArrayFastest("CE6DC043"));
-            MessageCodes.Add(AminoType.Cancel, Helpers.StringToByteArrayFastest("166E681B"));
-            MessageCodes.Add(AminoType.Freeze, Helpers.StringToByteArrayFastest("E774B32D"));
-            MessageCodes.Add(AminoType.Unfreeze, Helpers.StringToByteArrayFastest("6515FF0D"));
-            MessageCodes.Add(AminoType.Vote, Helpers.StringToByteArrayFastest("A1CADD36"));
-            MessageCodes.Add(AminoType.PubKey, Helpers.StringToByteArrayFastest("EB5AE987"));
+            MessageCodes.Add(AminoType.StandardTransaction, BinanceClient.Crypto.Helpers.StringToByteArrayFastest("F0625DEE"));
+            MessageCodes.Add(AminoType.Send, BinanceClient.Crypto.Helpers.StringToByteArrayFastest("2A2C87FA"));
+            MessageCodes.Add(AminoType.NewOrder, BinanceClient.Crypto.Helpers.StringToByteArrayFastest("CE6DC043"));
+            MessageCodes.Add(AminoType.Cancel, BinanceClient.Crypto.Helpers.StringToByteArrayFastest("166E681B"));
+            MessageCodes.Add(AminoType.Freeze, BinanceClient.Crypto.Helpers.StringToByteArrayFastest("E774B32D"));
+            MessageCodes.Add(AminoType.Unfreeze, BinanceClient.Crypto.Helpers.StringToByteArrayFastest("6515FF0D"));
+            MessageCodes.Add(AminoType.Vote, BinanceClient.Crypto.Helpers.StringToByteArrayFastest("A1CADD36"));
+            MessageCodes.Add(AminoType.PubKey, BinanceClient.Crypto.Helpers.StringToByteArrayFastest("EB5AE987"));
         }
 
         public static byte[] buildAminoMessage(byte[] message, AminoType messageType)
