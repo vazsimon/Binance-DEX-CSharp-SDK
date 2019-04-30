@@ -27,6 +27,8 @@ open tools > NuGet Package Manager > package Manager console:
 
 Alternatively, you can also clone or download the repository and build the binaries yourself.
 
+> Note: The class library got updated to .net standard 2.0 for maximum compatability.
+
 
 
 ## Wallet
